@@ -63,7 +63,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pager<PrendaDto>>> Get([FromQuery] Params PrendaParams)
         {
-            var Prenda = await _unitOfWork.Prendas.GetAllAsync(PrendaParams.PageIndex, PrendaParams.PageSize, PrendaParams.Search, "");
+            var Prenda = await _unitOfWork.Prendas.GetAllAsync(PrendaParams.PageIndex, PrendaParams.PageSize, PrendaParams.Search, "Id");
             var listaPrendasDto = _mapper.Map<List<PrendaDto>>(Prenda.registros);
             return new Pager<PrendaDto>(listaPrendasDto, Prenda.totalRegistros, PrendaParams.PageIndex, PrendaParams.PageSize, PrendaParams.Search);
         }

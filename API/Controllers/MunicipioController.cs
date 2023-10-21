@@ -45,7 +45,7 @@ public async Task<ActionResult<MunicipioDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<MunicipioDto>>> Get([FromQuery]Params MunicipioParams)
 {
-var Municipio = await _unitOfWork.Municipios.GetAllAsync(MunicipioParams.PageIndex,MunicipioParams.PageSize, MunicipioParams.Search, "" );
+var Municipio = await _unitOfWork.Municipios.GetAllAsync(MunicipioParams.PageIndex,MunicipioParams.PageSize, MunicipioParams.Search, "Nombre" );
 var listaMunicipiosDto= _mapper.Map<List<MunicipioDto>>(Municipio.registros);
 return new Pager<MunicipioDto>(listaMunicipiosDto, Municipio.totalRegistros,MunicipioParams.PageIndex,MunicipioParams.PageSize,MunicipioParams.Search);
 }

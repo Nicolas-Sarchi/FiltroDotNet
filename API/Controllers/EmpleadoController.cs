@@ -11,7 +11,7 @@ namespace API.Controllers
 {
 [ApiVersion("1.0")]
 [ApiVersion("1.1")]
-// [Authorize]
+[Authorize]
 public class EmpleadoController : BaseApiController
 {
 private IUnitOfWork _unitOfWork;
@@ -54,7 +54,7 @@ public async Task<ActionResult<EmpleadoDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<EmpleadoDto>>> Get([FromQuery]Params EmpleadoParams)
 {
-var Empleado = await _unitOfWork.Empleados.GetAllAsync(EmpleadoParams.PageIndex,EmpleadoParams.PageSize, EmpleadoParams.Search, "" );
+var Empleado = await _unitOfWork.Empleados.GetAllAsync(EmpleadoParams.PageIndex,EmpleadoParams.PageSize, EmpleadoParams.Search, "Id" );
 var listaEmpleadosDto= _mapper.Map<List<EmpleadoDto>>(Empleado.registros);
 return new Pager<EmpleadoDto>(listaEmpleadosDto, Empleado.totalRegistros,EmpleadoParams.PageIndex,EmpleadoParams.PageSize,EmpleadoParams.Search);
 }

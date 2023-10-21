@@ -45,7 +45,7 @@ public async Task<ActionResult<GeneroDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<GeneroDto>>> Get([FromQuery]Params GeneroParams)
 {
-var Genero = await _unitOfWork.Generos.GetAllAsync(GeneroParams.PageIndex,GeneroParams.PageSize, GeneroParams.Search, "" );
+var Genero = await _unitOfWork.Generos.GetAllAsync(GeneroParams.PageIndex,GeneroParams.PageSize, GeneroParams.Search, "Descripcion" );
 var listaGenerosDto= _mapper.Map<List<GeneroDto>>(Genero.registros);
 return new Pager<GeneroDto>(listaGenerosDto, Genero.totalRegistros,GeneroParams.PageIndex,GeneroParams.PageSize,GeneroParams.Search);
 }

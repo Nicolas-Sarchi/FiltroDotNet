@@ -45,7 +45,7 @@ public async Task<ActionResult<TipoProteccionDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<TipoProteccionDto>>> Get([FromQuery]Params TipoProteccionParams)
 {
-var TipoProteccion = await _unitOfWork.TipoProteccions.GetAllAsync(TipoProteccionParams.PageIndex,TipoProteccionParams.PageSize, TipoProteccionParams.Search, "" );
+var TipoProteccion = await _unitOfWork.TipoProteccions.GetAllAsync(TipoProteccionParams.PageIndex,TipoProteccionParams.PageSize, TipoProteccionParams.Search, "Id" );
 var listaTipoProteccionsDto= _mapper.Map<List<TipoProteccionDto>>(TipoProteccion.registros);
 return new Pager<TipoProteccionDto>(listaTipoProteccionsDto, TipoProteccion.totalRegistros,TipoProteccionParams.PageIndex,TipoProteccionParams.PageSize,TipoProteccionParams.Search);
 }

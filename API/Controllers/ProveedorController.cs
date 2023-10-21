@@ -57,7 +57,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pager<ProveedorDto>>> Get([FromQuery] Params ProveedorParams)
         {
-            var Proveedor = await _unitOfWork.Proveedores.GetAllAsync(ProveedorParams.PageIndex, ProveedorParams.PageSize, ProveedorParams.Search, "");
+            var Proveedor = await _unitOfWork.Proveedores.GetAllAsync(ProveedorParams.PageIndex, ProveedorParams.PageSize, ProveedorParams.Search, "Nombre");
             var listaProveedorsDto = _mapper.Map<List<ProveedorDto>>(Proveedor.registros);
             return new Pager<ProveedorDto>(listaProveedorsDto, Proveedor.totalRegistros, ProveedorParams.PageIndex, ProveedorParams.PageSize, ProveedorParams.Search);
         }

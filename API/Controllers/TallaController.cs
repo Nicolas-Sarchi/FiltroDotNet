@@ -45,7 +45,7 @@ public async Task<ActionResult<TallaDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<TallaDto>>> Get([FromQuery]Params TallaParams)
 {
-var Talla = await _unitOfWork.Tallas.GetAllAsync(TallaParams.PageIndex,TallaParams.PageSize, TallaParams.Search, "" );
+var Talla = await _unitOfWork.Tallas.GetAllAsync(TallaParams.PageIndex,TallaParams.PageSize, TallaParams.Search, "Id" );
 var listaTallasDto= _mapper.Map<List<TallaDto>>(Talla.registros);
 return new Pager<TallaDto>(listaTallasDto, Talla.totalRegistros,TallaParams.PageIndex,TallaParams.PageSize,TallaParams.Search);
 }

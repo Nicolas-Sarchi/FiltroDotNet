@@ -45,7 +45,7 @@ public async Task<ActionResult<PaisDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<PaisDto>>> Get([FromQuery]Params PaisParams)
 {
-var Pais = await _unitOfWork.Paises.GetAllAsync(PaisParams.PageIndex,PaisParams.PageSize, PaisParams.Search, "" );
+var Pais = await _unitOfWork.Paises.GetAllAsync(PaisParams.PageIndex,PaisParams.PageSize, PaisParams.Search, "Nombre" );
 var listaPaissDto= _mapper.Map<List<PaisDto>>(Pais.registros);
 return new Pager<PaisDto>(listaPaissDto, Pais.totalRegistros,PaisParams.PageIndex,PaisParams.PageSize,PaisParams.Search);
 }

@@ -45,7 +45,7 @@ public async Task<ActionResult<InventarioDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<InventarioDto>>> Get([FromQuery]Params InventarioParams)
 {
-var Inventario = await _unitOfWork.Inventarios.GetAllAsync(InventarioParams.PageIndex,InventarioParams.PageSize, InventarioParams.Search, "" );
+var Inventario = await _unitOfWork.Inventarios.GetAllAsync(InventarioParams.PageIndex,InventarioParams.PageSize, InventarioParams.Search, "Id" );
 var listaInventariosDto= _mapper.Map<List<InventarioDto>>(Inventario.registros);
 return new Pager<InventarioDto>(listaInventariosDto, Inventario.totalRegistros,InventarioParams.PageIndex,InventarioParams.PageSize,InventarioParams.Search);
 }

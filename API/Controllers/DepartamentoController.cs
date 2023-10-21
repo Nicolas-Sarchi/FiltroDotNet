@@ -45,7 +45,7 @@ public async Task<ActionResult<DepartamentoDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<DepartamentoDto>>> Get([FromQuery]Params DepartamentoParams)
 {
-var Departamento = await _unitOfWork.Departamentos.GetAllAsync(DepartamentoParams.PageIndex,DepartamentoParams.PageSize, DepartamentoParams.Search, "" );
+var Departamento = await _unitOfWork.Departamentos.GetAllAsync(DepartamentoParams.PageIndex,DepartamentoParams.PageSize, DepartamentoParams.Search, "Id" );
 var listaDepartamentosDto= _mapper.Map<List<DepartamentoDto>>(Departamento.registros);
 return new Pager<DepartamentoDto>(listaDepartamentosDto, Departamento.totalRegistros,DepartamentoParams.PageIndex,DepartamentoParams.PageSize,DepartamentoParams.Search);
 }

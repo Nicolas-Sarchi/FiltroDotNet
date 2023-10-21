@@ -63,7 +63,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pager<OrdenDto>>> Get([FromQuery] Params OrdenParams)
         {
-            var Orden = await _unitOfWork.Ordens.GetAllAsync(OrdenParams.PageIndex, OrdenParams.PageSize, OrdenParams.Search, "");
+            var Orden = await _unitOfWork.Ordens.GetAllAsync(OrdenParams.PageIndex, OrdenParams.PageSize, OrdenParams.Search, "Id");
             var listaOrdensDto = _mapper.Map<List<OrdenDto>>(Orden.registros);
             return new Pager<OrdenDto>(listaOrdensDto, Orden.totalRegistros, OrdenParams.PageIndex, OrdenParams.PageSize, OrdenParams.Search);
         }

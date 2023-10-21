@@ -45,7 +45,7 @@ public async Task<ActionResult<FormaPagoDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<FormaPagoDto>>> Get([FromQuery]Params FormaPagoParams)
 {
-var FormaPago = await _unitOfWork.FormaPagos.GetAllAsync(FormaPagoParams.PageIndex,FormaPagoParams.PageSize, FormaPagoParams.Search, "" );
+var FormaPago = await _unitOfWork.FormaPagos.GetAllAsync(FormaPagoParams.PageIndex,FormaPagoParams.PageSize, FormaPagoParams.Search, "Id" );
 var listaFormaPagosDto= _mapper.Map<List<FormaPagoDto>>(FormaPago.registros);
 return new Pager<FormaPagoDto>(listaFormaPagosDto, FormaPago.totalRegistros,FormaPagoParams.PageIndex,FormaPagoParams.PageSize,FormaPagoParams.Search);
 }

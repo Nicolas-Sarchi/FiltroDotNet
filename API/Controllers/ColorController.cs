@@ -45,7 +45,7 @@ public async Task<ActionResult<ColorDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<ColorDto>>> Get([FromQuery]Params ColorParams)
 {
-var Color = await _unitOfWork.Colors.GetAllAsync(ColorParams.PageIndex,ColorParams.PageSize, ColorParams.Search, "" );
+var Color = await _unitOfWork.Colors.GetAllAsync(ColorParams.PageIndex,ColorParams.PageSize, ColorParams.Search, "Id" );
 var listaColorsDto= _mapper.Map<List<ColorDto>>(Color.registros);
 return new Pager<ColorDto>(listaColorsDto, Color.totalRegistros,ColorParams.PageIndex,ColorParams.PageSize,ColorParams.Search);
 }

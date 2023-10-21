@@ -53,7 +53,7 @@ namespace API.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<Pager<InsumoDto>>> Get([FromQuery] Params InsumoParams)
         {
-            var Insumo = await _unitOfWork.Insumos.GetAllAsync(InsumoParams.PageIndex, InsumoParams.PageSize, InsumoParams.Search, "");
+            var Insumo = await _unitOfWork.Insumos.GetAllAsync(InsumoParams.PageIndex, InsumoParams.PageSize, InsumoParams.Search, "Id");
             var listaInsumosDto = _mapper.Map<List<InsumoDto>>(Insumo.registros);
             return new Pager<InsumoDto>(listaInsumosDto, Insumo.totalRegistros, InsumoParams.PageIndex, InsumoParams.PageSize, InsumoParams.Search);
         }

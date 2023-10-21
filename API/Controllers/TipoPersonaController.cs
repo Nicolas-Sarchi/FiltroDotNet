@@ -45,7 +45,7 @@ public async Task<ActionResult<TipoPersonaDto>> Get(int id)
 [ProducesResponseType(StatusCodes.Status400BadRequest)]
 public async Task<ActionResult<Pager<TipoPersonaDto>>> Get([FromQuery]Params TipoPersonaParams)
 {
-var TipoPersona = await _unitOfWork.TipoPersonas.GetAllAsync(TipoPersonaParams.PageIndex,TipoPersonaParams.PageSize, TipoPersonaParams.Search, "" );
+var TipoPersona = await _unitOfWork.TipoPersonas.GetAllAsync(TipoPersonaParams.PageIndex,TipoPersonaParams.PageSize, TipoPersonaParams.Search, "Id" );
 var listaTipoPersonasDto= _mapper.Map<List<TipoPersonaDto>>(TipoPersona.registros);
 return new Pager<TipoPersonaDto>(listaTipoPersonasDto, TipoPersona.totalRegistros,TipoPersonaParams.PageIndex,TipoPersonaParams.PageSize,TipoPersonaParams.Search);
 }
